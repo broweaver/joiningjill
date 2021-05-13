@@ -1,26 +1,39 @@
 const listingsRouter = require('express').Router()
 import { Response, Request } from 'express'
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
 import config from './../utils/config'
-import logger from '../utils/logger'
 import redis from './../cache/redis'
+import logger from '../utils/logger'
 
-const getListings = async (): Promise<AxiosResponse> => {
-  return await axios.get(
-    `${config.ETSY_URL}/shops/joiningjill/listings/active`,
-    {
-      params: { api_key: config.ETSY_KEY }
-    }
-  )
-}
-
+// Get all listings for the joiningjill shop
 listingsRouter.get('/', async (request: Request, response: Response) => {
+  const imageIncludes: Array<string> = ['url_570xN', 'url_fullxfull']
+  const fields: Array<string> = [
+    'listing_id',
+    'state',
+    'title',
+    'description',
+    'price',
+    'currency_code',
+    'quantity',
+    'tags',
+    'materials',
+    'url',
+    'item_weight',
+    'item_weight_unit',
+    'item_length',
+    'item_width',
+    'item_height',
+    'item_dimensions_unit'
+  ]
+
   const resp = await axios.get(
-    `${config.ETSY_URL}/shops/joiningjill/listings/active`,
+    `${config.ETSY_URL}/shops/${config.ETSY_SHOP}/listings/active`,
     {
       params: {
         api_key: config.ETSY_KEY,
-        includes: 'Images(url_570xN,url_fullxfull)'
+        includes: `Images(${imageIncludes.join(',')})`,
+        fields: fields.join(',')
       }
     }
   )

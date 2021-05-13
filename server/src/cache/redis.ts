@@ -13,11 +13,17 @@ redisClient.on('connect', () =>
   console.log(`Connected to Redis on port ${config.REDIS_PORT}`)
 )
 
+redisClient.on('error', err => {
+  logger.error(`500 - Could not connect to Redis: ${err}`)
+})
+
+// Cache key with value for an hour
 const set = (key: string, value: any) => {
   redisClient.setex(key, 3600, JSON.stringify(value))
   logger.info(`${key} set in cache`)
 }
 
+// Middleware that checks redis cache for request path and if it exists, return
 const get = (request: Request, response, next: NextFunction) => {
   const key = request.originalUrl
   redisClient.get(key, (error, cachedData) => {
@@ -34,7 +40,19 @@ const get = (request: Request, response, next: NextFunction) => {
   })
 }
 
+const flush = () => {
+  redisClient.flushdb((err, success) => {
+    logger.info('cache flushed')
+  })
+}
+
+const disconnect = () => {
+  redisClient.quit()
+}
+
 export default {
   set,
-  get
+  get,
+  flush,
+  disconnect
 }

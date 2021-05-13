@@ -4,5 +4,6 @@ module.exports = {
     '^.+\\.(ts|tsx)?$': 'ts-jest'
   },
   testEnvironment: 'node',
-  globalSetup: './src/tests/globalSetup.ts'
+  globalSetup: './tests/globalSetup.ts',
+  rootDir: './src'
 }

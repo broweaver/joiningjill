@@ -16,7 +16,7 @@ app.use(middleware.requestLogger)
 // Cache all requests by route/return in redis
 app.use(cache.get)
 
-// API Routes
+// API route configuration
 app.use('/listings', listingsController)
 
 app.use(middleware.unknownEndpoint)

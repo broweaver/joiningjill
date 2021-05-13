@@ -14,7 +14,6 @@ Frontend will be built with React and Tailwind CSS among other technologies
 <br />
 
 <h2> Installation Instructions </h2>
-<br />
 <h3>Server</h3>
 Copy /server/sample.env to .env and configure according to your local environment
 <br />

@@ -7,7 +7,12 @@ import logger from '../utils/logger'
 
 // Get all listings for the joiningjill shop
 listingsRouter.get('/', async (request: Request, response: Response) => {
-  const imageIncludes: Array<string> = ['url_570xN', 'url_fullxfull']
+  const imageIncludes: Array<string> = [
+    'url_75x75',
+    'url_170x135',
+    'url_570xN',
+    'url_fullxfull'
+  ]
   const fields: Array<string> = [
     'listing_id',
     'state',
@@ -33,7 +38,8 @@ listingsRouter.get('/', async (request: Request, response: Response) => {
       params: {
         api_key: config.ETSY_KEY,
         includes: `Images(${imageIncludes.join(',')})`,
-        fields: fields.join(',')
+        fields: fields.join(','),
+        limit: 100 //TODO - figure out a better way to grab all results and display them - default limit here is 25
       }
     }
   )

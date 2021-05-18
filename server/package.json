@@ -12,7 +12,8 @@
     "watch-ts": "tsc -w",
     "dev": "nodemon --config nodemon.json src/index.ts",
     "dev:debug": "nodemon --config nodemon.json --inspect-brk src/index.ts",
-    "test": "cross-env NODE_ENV=test jest --verbose --runInBand"
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
+    "test:ci": "jest --ci --reporters='default' --reporters='./github-actions-reporter'"
   },
   "author": "Brock Weaver",
   "license": "ISC",

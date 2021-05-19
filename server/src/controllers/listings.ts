@@ -11,7 +11,9 @@ listingsRouter.get('/', async (request: Request, response: Response) => {
     'url_75x75',
     'url_170x135',
     'url_570xN',
-    'url_fullxfull'
+    'url_fullxfull',
+    'full_height',
+    'full_width'
   ]
   const fields: Array<string> = [
     'listing_id',

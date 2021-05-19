@@ -3,6 +3,8 @@ export interface ListingImage {
   url_170x135: string
   url_570xN: string
   url_fullxfull: string
+  full_height: number
+  full_width: number
 }
 
 export interface Listing {

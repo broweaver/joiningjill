@@ -25,8 +25,8 @@ const App = () => {
     <ChakraProvider theme={theme}>
       <Box textAlign='center' fontSize='xl'>
         <Grid minH='100vh'>
-          <Header></Header>
-          <ListingsGallery listings={listings}></ListingsGallery>
+          <Header />
+          <ListingsGallery listings={listings} />
         </Grid>
       </Box>
     </ChakraProvider>

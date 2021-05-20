@@ -55,8 +55,6 @@ const ListingsGallery: React.FC<{
 
   return (
     <div>
-      {/* <SRLWrapper elements={selectedListingImages}></SRLWrapper> */}
-
       <Gallery photos={images} onClick={openCarousel} />
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />

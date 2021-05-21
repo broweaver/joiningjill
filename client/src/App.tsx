@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { ChakraProvider, Box, Grid, theme } from '@chakra-ui/react'
+import { ChakraProvider, Box, Grid, extendTheme } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 import { Listing } from './types/Listing'
 import ListingsGallery from './components/ListingsGallery'
 import './App.scss'
 import Header from './components/Header'
+import { createBreakpoints } from '@chakra-ui/theme-tools'
 
 const App = () => {
   const [listings, setListings] = useState<Listing[]>([])
@@ -20,6 +21,17 @@ const App = () => {
     const listings: Listing[] = response.data
     setListings(listings)
   }
+
+  // Define chakra ui breakpoints
+  const breakpoints = createBreakpoints({
+    sm: '320px',
+    md: '768px',
+    lg: '960px',
+    xl: '1200px',
+    xxl: '2000px'
+  })
+
+  const theme = extendTheme({ breakpoints })
 
   return (
     <ChakraProvider theme={theme}>
